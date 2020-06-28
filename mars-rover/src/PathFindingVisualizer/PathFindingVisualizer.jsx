@@ -6,6 +6,7 @@ import './PathFindingVisualizer.css'
 import { DepthFirst, ShortestPathDepthFirst } from '../Algorithms/depthFirst';
 import { Dijkstra, ShortestPathDijkstra } from '../Algorithms/Dijkstra';
 //import { dijkstra, getNodesInShortestPathOrder } from '../Algorithms/dijkstra';
+import { AStar, ShortestPathAStar } from '../Algorithms/A-Star';
 
 let START_NODE_ROW = 10;
 let START_NODE_COL = 15;
@@ -20,8 +21,9 @@ export default class PathFindingVisualizer extends Component {
             mouseIsPressed: false,
             isStartChange: false,
             isFinishChange: false,
-            searchMethod: 'Dijkstra',
+            searchMethod: 'AStar',
             diagonal: false,
+            heuristic: "Manhattan"
         };
     }
 
@@ -147,11 +149,27 @@ export default class PathFindingVisualizer extends Component {
             const visitedNodesInOrder = DepthFirst(grid, startNode, finishNode, this.state.diagonal);
             const nodesInShortestPathOrder = ShortestPathDepthFirst(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
-            console.log("BB");
+        } else if (this.state.searchMethod === 'AStar') {
+            const visitedNodesInOrder = AStar(grid, startNode, finishNode, this.state.diagonal, this.state.heuristic);
+            const nodesInShortestPathOrder = ShortestPathAStar(finishNode);
+            this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
     }
     searchMethod(newMethod) {
+        if (newMethod === 'Dijkstra' || newMethod === "BreathFirst" || newMethod === "DepthFirst") {
+            var h = document.getElementById("heuristic");
+            h.disabled = true;
+        } else {
+            var h = document.getElementById("heuristic");
+            h.disabled = false;
+        }
         this.setState({ searchMethod: newMethod });
+    }
+
+    // function to change the heuristic based on the dropdown on navigation bar
+    changeHeuristic(newHeuristic) {
+        console.log("heuristic changed");
+        this.setState({ heuristic: newHeuristic });
     }
 
     changeDiagonal() {
@@ -161,7 +179,6 @@ export default class PathFindingVisualizer extends Component {
 
     render() {
         const { grid, mouseIsPressed } = this.state;
-        console.log(grid);
 
         return (
             <>
@@ -169,7 +186,8 @@ export default class PathFindingVisualizer extends Component {
                     resetGrid={this.resetGrid}
                     searchMethod={(newMethod) => this.searchMethod(newMethod)}
                     runAlgorithm={() => this.visualize()}
-                    changeDiagonal={(check) => this.changeDiagonal()}>
+                    changeDiagonal={(check) => this.changeDiagonal()}
+                    changeHeuristic={(newHeuristic) => this.changeHeuristic(newHeuristic)}>
                 </NavigationBar>
                 <div className="grid">
                     {grid.map((row, rowIdx) => {
