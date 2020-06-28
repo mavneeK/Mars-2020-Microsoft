@@ -2,7 +2,6 @@ export function BreathFirst(grid, startNode, finishNode) {
     const visitedNodesInOrder = [];
     startNode.distance = 0;
     const queue = [];
-    const unvisitedNodes = getAllNodes(grid);
     queue.push(startNode);
     while (queue.length > 0) {
         const currentNode = queue.shift();
@@ -14,7 +13,6 @@ export function BreathFirst(grid, startNode, finishNode) {
         visitedNodesInOrder.push(currentNode);
         if (currentNode === finishNode) return visitedNodesInOrder;
         updateQueue(queue, currentNode, grid);
-        console.log("running")
     }
 }
 
@@ -35,15 +33,6 @@ function getUnvisitedNeighbors(node, grid) {
     if (col > 0) neighbor.push(grid[row][col - 1]);
     if (col < grid[0].length - 1) neighbor.push(grid[row][col + 1]);
     return neighbor.filter(neighbor => !neighbor.isVisited);
-}
-function getAllNodes(grid) {
-    const nodes = [];
-    for (const row of grid) {
-        for (const node of row) {
-            nodes.push(node);
-        }
-    }
-    return nodes;
 }
 
 export function ShortestPathBreathFirst(finishNode) {

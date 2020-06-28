@@ -6,14 +6,14 @@
 }
 
 .node-finish {
-  /* background-color: red; */
   background-image: url('../../assets/flag.png');
+  background-color: black;
 
 }
 
 .node-start {
   background-image: url('../../assets/rover.png');
-  /* background-color: green; */
+  background-color: white;
 
 }
 
@@ -46,7 +46,7 @@
 
   100% {
     transform: scale(1);
-    background-color: rgba(0, 190, 218, 0.75);
+    background-color: rgba(0, 128, 0, 0.75);
   }
 }
 
@@ -86,8 +86,8 @@
 
   100% {
     transform: scale(1);
-    /* background-color: rgb(255, 254, 106); */
-    background-color: rgb(12, 53, 71);
+    background-color: rgb(255, 254, 106);
+    /* background-color: rgb(12, 53, 71); */
 
   }
 }

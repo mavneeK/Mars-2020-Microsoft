@@ -97,6 +97,12 @@ export default class PathFindingVisualizer extends Component {
                 }, 10 * i);
                 return;
             }
+            if (i === 0) {
+                continue;
+            }
+            if (i === visitedNodesInOrder.length - 1) {
+                continue;
+            }
             setTimeout(() => {
                 const node = visitedNodesInOrder[i];
                 document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-visited';
@@ -106,6 +112,12 @@ export default class PathFindingVisualizer extends Component {
 
     animateShortestPath(nodesInShortestPathOrder) {
         for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
+            if (i === 0) {
+                continue;
+            }
+            if (i === nodesInShortestPathOrder.length - 1) {
+                continue;
+            }
             setTimeout(() => {
                 const node = nodesInShortestPathOrder[i];
                 document.getElementById(`node-${node.row}-${node.col}`).className =
@@ -183,7 +195,7 @@ const getInitialGrid = () => {
     const grid = [];
     for (let row = 0; row < 25; row++) {
         const currentRow = [];
-        for (let col = 0; col < 67; col++) {
+        for (let col = 0; col < 69; col++) {
             const node = createNode(col, row);
             currentRow.push(node);
         }
