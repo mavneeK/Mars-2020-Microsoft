@@ -6,12 +6,14 @@
 }
 
 .node-finish {
-  background-color: red;
+  /* background-color: red; */
+  background-image: url('../../assets/flag.png');
+
 }
 
 .node-start {
-  /* background-image: url('../../assets/mars-rover.png'); */
-  background-color: green;
+  background-image: url('../../assets/rover.png');
+  /* background-color: green; */
 
 }
 
@@ -49,7 +51,9 @@
 }
 
 .node-wall {
-  background-color: rgb(12, 53, 71);
+  /* background-color: rgb(12, 53, 71); */
+  background-image: url('../../assets/wall_2.png');
+
 }
 
 .node-shortest-path {
@@ -66,20 +70,24 @@
 @keyframes shortestPath {
   0% {
     transform: scale(0.6);
-    /* background-image: url('../../assets/mars-rover.png'); */
+    background-image: url('../../assets/rover.png');
+    background-color: rgb(255, 255, 255);
 
-    background-color: rgb(255, 254, 106);
+    /* background-color: rgb(255, 254, 106); */
   }
 
   50% {
     transform: scale(1.2);
-    /* background-image: url('../../assets/mars-rover.png'); */
+    /* background-image: url('../../assets/rover.png'); */
+    background-color: rgb(255, 255, 255);
 
-    background-color: rgb(255, 254, 106);
+    /* background-color: rgb(255, 254, 106); */
   }
 
   100% {
     transform: scale(1);
-    background-color: rgb(255, 254, 106);
+    /* background-color: rgb(255, 254, 106); */
+    background-color: rgb(12, 53, 71);
+
   }
 }
