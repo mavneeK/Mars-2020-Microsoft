@@ -21,7 +21,9 @@ export default class NavigationBar extends React.Component {
                     <select className="navbar navbar-dark text-light bg-dark btn btn-dark border border-light rounded" onChange={(event) => this.props.searchMethod(event.target.value)}>
                         <option value="Dijkstra">Dijkstra</option>
                         <option value="BreathFirst">Breath First</option>
+                        <option value="DepthFirst">Depth First</option>
                     </select>
+                    <span className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }}>Diagonal Search: <input type="checkbox" onClick={() => this.props.changeDiagonal()}></input></span>
                     <button className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.resetGrid()}>
                         Reset Grid
                     </button>

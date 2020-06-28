@@ -3,6 +3,7 @@ import Node from './Node/Node';
 import { BreathFirst, ShortestPathBreathFirst } from '../Algorithms/breathFirst';
 import NavigationBar from '../Components/NavigationBar';
 import './PathFindingVisualizer.css'
+import { DepthFirst, ShortestPathDepthFirst } from '../Algorithms/depthFirst';
 import { Dijkstra, ShortestPathDijkstra } from '../Algorithms/Dijkstra';
 //import { dijkstra, getNodesInShortestPathOrder } from '../Algorithms/dijkstra';
 
@@ -20,6 +21,7 @@ export default class PathFindingVisualizer extends Component {
             isStartChange: false,
             isFinishChange: false,
             searchMethod: 'Dijkstra',
+            diagonal: false,
         };
     }
 
@@ -89,7 +91,7 @@ export default class PathFindingVisualizer extends Component {
         this.setState({ mouseIsPressed: false });
     }
 
-    animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
+    animate(visitedNodesInOrder, nodesInShortestPathOrder) {
         for (let i = 0; i <= visitedNodesInOrder.length; i++) {
             if (i === visitedNodesInOrder.length) {
                 setTimeout(() => {
@@ -126,7 +128,7 @@ export default class PathFindingVisualizer extends Component {
         }
     }
 
-    visualizeDijkstra() {
+    visualize() {
         const { grid } = this.state;
 
         const startNode = grid[START_NODE_ROW][START_NODE_COL];
@@ -134,17 +136,27 @@ export default class PathFindingVisualizer extends Component {
         if (this.state.searchMethod === 'Dijkstra') {
             const visitedNodesInOrder = Dijkstra(grid, startNode, finishNode);
             const nodesInShortestPathOrder = ShortestPathDijkstra(finishNode);
-            this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+            this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
             console.log("Dij");
         } else if (this.state.searchMethod === 'BreathFirst') {
             const visitedNodesInOrder = BreathFirst(grid, startNode, finishNode);
             const nodesInShortestPathOrder = ShortestPathBreathFirst(finishNode);
-            this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+            this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
+            console.log("BB");
+        } else if (this.state.searchMethod === 'DepthFirst') {
+            const visitedNodesInOrder = DepthFirst(grid, startNode, finishNode, this.state.diagonal);
+            const nodesInShortestPathOrder = ShortestPathDepthFirst(finishNode);
+            this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
             console.log("BB");
         }
     }
     searchMethod(newMethod) {
         this.setState({ searchMethod: newMethod });
+    }
+
+    changeDiagonal() {
+        let check = this.state.diagonal;
+        this.setState({ diagonal: !check });
     }
 
     render() {
@@ -156,7 +168,8 @@ export default class PathFindingVisualizer extends Component {
                 <NavigationBar
                     resetGrid={this.resetGrid}
                     searchMethod={(newMethod) => this.searchMethod(newMethod)}
-                    runAlgorithm={() => this.visualizeDijkstra()}>
+                    runAlgorithm={() => this.visualize()}
+                    changeDiagonal={(check) => this.changeDiagonal()}>
                 </NavigationBar>
                 <div className="grid">
                     {grid.map((row, rowIdx) => {
