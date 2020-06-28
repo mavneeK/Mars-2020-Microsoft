@@ -134,12 +134,12 @@ export default class PathFindingVisualizer extends Component {
         const startNode = grid[START_NODE_ROW][START_NODE_COL];
         const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
         if (this.state.searchMethod === 'Dijkstra') {
-            const visitedNodesInOrder = Dijkstra(grid, startNode, finishNode);
+            const visitedNodesInOrder = Dijkstra(grid, startNode, finishNode, this.state.diagonal);
             const nodesInShortestPathOrder = ShortestPathDijkstra(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
             console.log("Dij");
         } else if (this.state.searchMethod === 'BreathFirst') {
-            const visitedNodesInOrder = BreathFirst(grid, startNode, finishNode);
+            const visitedNodesInOrder = BreathFirst(grid, startNode, finishNode, this.state.diagonal);
             const nodesInShortestPathOrder = ShortestPathBreathFirst(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
             console.log("BB");
@@ -208,7 +208,7 @@ const getInitialGrid = () => {
     const grid = [];
     for (let row = 0; row < 25; row++) {
         const currentRow = [];
-        for (let col = 0; col < 69; col++) {
+        for (let col = 0; col < 68; col++) {
             const node = createNode(col, row);
             currentRow.push(node);
         }

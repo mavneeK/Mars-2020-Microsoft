@@ -31,9 +31,11 @@ function updateStack(stack, currentNode, grid, diagonal) {
 
     const unvisitedNeighbors = getUnvisitedNeighbors(currentNode, grid, diagonal);
     for (const neighbor of unvisitedNeighbors) {
-        neighbor.distance = currentNode.distance + 1;
-        neighbor.previousNode = currentNode;
-        stack.push(neighbor);
+        if (neighbor.distance > currentNode.distance + 1) {
+            neighbor.distance = currentNode.distance + 1;
+            neighbor.previousNode = currentNode;
+            stack.push(neighbor);
+        }
     }
 }
 
@@ -46,10 +48,10 @@ function getUnvisitedNeighbors(node, grid, diagonal) {
     if (col < grid[0].length - 1) neighbor.push(grid[row][col + 1]);
     // diagonal elements
     if (diagonal === true) {
-        if (col < grid[0].length - 1 && row < grid.length - 1) neighbor.push(grid[row + 1][col + 1]);
+        if (col > 0 && row > 0) neighbor.push(grid[row - 1][col - 1]);
         if (col < grid[0].length - 1 && row > 0) neighbor.push(grid[row - 1][col + 1]);
         if (col > 0 && row < grid.length - 1) neighbor.push(grid[row + 1][col - 1]);
-        if (col > 0 && row > 0) neighbor.push(grid[row - 1][col - 1]);
+        if (col < grid[0].length - 1 && row < grid.length - 1) neighbor.push(grid[row + 1][col + 1]);
     }
     return neighbor.filter(neighbor => !neighbor.isVisited);
 }
