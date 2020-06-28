@@ -10,7 +10,9 @@
 }
 
 .node-start {
+  /* background-image: url('../../assets/mars-rover.png'); */
   background-color: green;
+
 }
 
 .node-visited {
@@ -64,11 +66,15 @@
 @keyframes shortestPath {
   0% {
     transform: scale(0.6);
+    /* background-image: url('../../assets/mars-rover.png'); */
+
     background-color: rgb(255, 254, 106);
   }
 
   50% {
     transform: scale(1.2);
+    /* background-image: url('../../assets/mars-rover.png'); */
+
     background-color: rgb(255, 254, 106);
   }
 

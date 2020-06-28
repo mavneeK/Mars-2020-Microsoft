@@ -1,4 +1,4 @@
-export function breathFirst(grid, startNode, finishNode) {
+export function BreathFirst(grid, startNode, finishNode) {
     const visitedNodesInOrder = [];
     startNode.distance = 0;
     const queue = [];
@@ -46,7 +46,7 @@ function getAllNodes(grid) {
     return nodes;
 }
 
-export function getNodesInShortestPathOrder(finishNode) {
+export function ShortestPathBreathFirst(finishNode) {
     const nodesInShortestPathOrder = [];
     let currentNode = finishNode;
     while (currentNode != null) {
