@@ -9,16 +9,14 @@ export default class NavigationBarTicTacToe extends React.Component {
         super(props);
     }
 
-    // handleSearchChange(event) {
-    //     console.log(event.target.value);
-    //     //this.props.searchMethod(event.target.value);
-    // }
-
     render() {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a className="navbar-brand" href="/"><img src={mars_image} height="24px" width="24px" style={{ marginRight: "10px" }}></img>Mars 2020</a>
+                    <span className="text-light" style={{ marginRight: "10px" }}>First Move :</span>
+                    <button id="humanButton" style={{ marginRight: "10px" }} className="navbar navbar-dark text-light bg-dark btn btn-dark border border-light rounded" onClick={() => this.props.humanFirst()}>Human</button>
+                    <button id="alienButton" className="navbar navbar-dark text-light bg-dark btn btn-dark border border-light rounded" onClick={() => this.props.alienFirst()}>Alien</button>
                     <a className="navbar navbar-dark text-light bg-dark bg-dark btn btn-dark border border-light rounded" href="/tictactoe" style={{ marginLeft: "auto" }}>
                         Back To Exploring Mars
                     </a>
