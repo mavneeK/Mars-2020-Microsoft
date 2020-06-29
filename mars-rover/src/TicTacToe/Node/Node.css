@@ -1,0 +1,53 @@
+.node {
+    width: 100px;
+    height: 100px;
+    outline: 1px solid rgb(200, 200, 200);
+    display: inline-block;
+  }
+  
+  .node-cross {
+    background-image: url('../../assets/cross.png');
+    animation-name: crossAnimation;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    background-size: 100px 100px;
+    padding: 10px;
+
+    
+  }
+  
+  .node-circle {
+    background-image: url('../../assets/circle.png');
+    animation-name: crossAnimation;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    background-size: 100px 100px;
+    padding: 10px;
+
+  
+  }
+  
+  @keyframes crossAnimation {
+    0% {
+      transform: scale(0.3);
+      border-radius: 100%;
+    }
+  
+    50% {
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+  
+  
+    100% {
+      transform: scale(1);
+      background-color: rgba(255, 255, 255, 0.75);
+    }
+  }
