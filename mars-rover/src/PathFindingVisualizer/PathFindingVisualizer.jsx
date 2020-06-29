@@ -132,7 +132,7 @@ export default class PathFindingVisualizer extends Component {
 
     visualize() {
         const { grid } = this.state;
-
+        reset(grid);
         const startNode = grid[START_NODE_ROW][START_NODE_COL];
         const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
         if (this.state.searchMethod === 'Dijkstra') {
@@ -166,7 +166,7 @@ export default class PathFindingVisualizer extends Component {
 
     // function to change the heuristic based on the dropdown on navigation bar
     changeHeuristic(newHeuristic) {
-        console.log("heuristic changed");
+        console.log(newHeuristic);
         this.setState({ heuristic: newHeuristic });
     }
 
@@ -232,6 +232,19 @@ const getInitialGrid = () => {
     }
     return grid;
 };
+
+const reset = (grid) => {
+    for (const row of grid) {
+        for (const node of row) {
+            node.isVisited = false;
+            node.previousNode = null;
+            node.distance = Infinity;
+            document.getElementById(`node-${node.row}-${node.col}`).classList.remove('node-visited');
+            document.getElementById(`node-${node.row}-${node.col}`).classList.remove('node-shortest-path');
+
+        }
+    }
+}
 
 const createNode = (col, row) => {
     return {

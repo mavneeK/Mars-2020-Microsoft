@@ -50,6 +50,9 @@ function getHeuristicValue(node, heuristic, finishNode) {
         return Math.sqrt((Math.pow(node.row - finishNode.row, 2) + (Math.pow(node.col - finishNode.col, 2))));
         // return Math.sqrt(((node.row - finishNode.row) << (2)) + ((node.col - finishNode.col) << (2)));  // done for better performance
     }
+    if (heuristic === 'DiagonalDistance') {
+        return Math.max(Math.abs(node.row - finishNode.row), Math.abs(node.col - finishNode.col));
+    }
 }
 
 function updateUnvisitedNeighbors(node, grid, diagonal) {
