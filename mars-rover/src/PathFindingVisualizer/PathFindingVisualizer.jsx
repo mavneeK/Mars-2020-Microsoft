@@ -5,8 +5,9 @@ import NavigationBar from '../Components/NavigationBar';
 import './PathFindingVisualizer.css'
 import { DepthFirst, ShortestPathDepthFirst } from '../Algorithms/depthFirst';
 import { Dijkstra, ShortestPathDijkstra } from '../Algorithms/Dijkstra';
-//import { dijkstra, getNodesInShortestPathOrder } from '../Algorithms/dijkstra';
 import { AStar, ShortestPathAStar } from '../Algorithms/A-Star';
+import { BestFirst, ShortestPathBestFirst } from '../Algorithms/BestFirst'
+
 
 let START_NODE_ROW = 10;
 let START_NODE_COL = 15;
@@ -150,6 +151,12 @@ export default class PathFindingVisualizer extends Component {
         } else if (this.state.searchMethod === 'AStar') {
             const visitedNodesInOrder = AStar(grid, startNode, finishNode, this.state.diagonal, this.state.heuristic);
             const nodesInShortestPathOrder = ShortestPathAStar(finishNode);
+            this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
+        }
+        else if (this.state.searchMethod === 'BestFirst') {
+            console.log("R");
+            const visitedNodesInOrder = BestFirst(grid, startNode, finishNode, this.state.diagonal, this.state.heuristic);
+            const nodesInShortestPathOrder = ShortestPathBestFirst(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
     }
