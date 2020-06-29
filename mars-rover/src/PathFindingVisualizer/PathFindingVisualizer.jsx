@@ -139,12 +139,10 @@ export default class PathFindingVisualizer extends Component {
             const visitedNodesInOrder = Dijkstra(grid, startNode, finishNode, this.state.diagonal);
             const nodesInShortestPathOrder = ShortestPathDijkstra(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
-            console.log("Dij");
         } else if (this.state.searchMethod === 'BreathFirst') {
             const visitedNodesInOrder = BreathFirst(grid, startNode, finishNode, this.state.diagonal);
             const nodesInShortestPathOrder = ShortestPathBreathFirst(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
-            console.log("BB");
         } else if (this.state.searchMethod === 'DepthFirst') {
             const visitedNodesInOrder = DepthFirst(grid, startNode, finishNode, this.state.diagonal);
             const nodesInShortestPathOrder = ShortestPathDepthFirst(finishNode);
