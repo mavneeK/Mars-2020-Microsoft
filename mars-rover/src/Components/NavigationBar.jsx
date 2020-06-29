@@ -1,5 +1,6 @@
 import React from 'react';
 var mars_image = require('../assets/mars_icon.png')
+var alien_image = require('../assets/alien.gif')
 
 
 export default class NavigationBar extends React.Component {
@@ -42,6 +43,7 @@ export default class NavigationBar extends React.Component {
                     <a className="navbar navbar-dark text-light bg-dark bg-dark btn btn-dark border border-light rounded" style={{ marginLeft: "auto" }}>
                         Challenge Alien in TicTacToe Game
                     </a>
+                    <img src={alien_image} height="24px" width="40px"></img>
                 </nav>
             </div >
         )
