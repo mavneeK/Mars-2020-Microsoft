@@ -53,6 +53,12 @@ function getHeuristicValue(node, heuristic, finishNode) {
     if (heuristic === 'DiagonalDistance') {
         return Math.max(Math.abs(node.row - finishNode.row), Math.abs(node.col - finishNode.col));
     }
+    if (heuristic === 'Octile') {
+        var F = Math.SQRT2 - 1;
+        var dx = Math.abs(node.row - finishNode.row);
+        var dy = Math.abs(node.col - finishNode.col);
+        return F * Math.min(dx, dy) + Math.abs(dx - dy);
+    }
 }
 
 function updateUnvisitedNeighbors(node, grid, diagonal) {
