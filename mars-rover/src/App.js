@@ -1,11 +1,20 @@
 import React from 'react';
 import PathFindingVisualizer from './PathFindingVisualizer/PathFindingVisualizer';
-import NavigationBar from './Components/NavigationBar'
+import { Router, Route, Switch } from 'react-router-dom';
+import history from './history';
+import TicTacToe from './TicTacToe/TicTacToe'
 
 function App() {
   return (
-    <div className="App">
-      <PathFindingVisualizer></PathFindingVisualizer>
+    <div>
+      <Router history={history}>
+        <div className="App">
+          <Switch>
+            <Route path="/" exact component={PathFindingVisualizer} />
+            <Route path="/tictactoe" exact component={TicTacToe} />
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }
