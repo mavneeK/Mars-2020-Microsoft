@@ -7,7 +7,7 @@ import { DepthFirst, ShortestPathDepthFirst } from '../Algorithms/depthFirst';
 import { Dijkstra, ShortestPathDijkstra } from '../Algorithms/Dijkstra';
 import { AStar, ShortestPathAStar } from '../Algorithms/A-Star';
 import { BestFirst, ShortestPathBestFirst } from '../Algorithms/BestFirst'
-
+import { Recursive, ShortestPathRecursion } from '../Algorithms/Recursive';
 
 let START_NODE_ROW = 10;
 let START_NODE_COL = 15;
@@ -157,6 +157,10 @@ export default class PathFindingVisualizer extends Component {
             console.log("R");
             const visitedNodesInOrder = BestFirst(grid, startNode, finishNode, this.state.diagonal, this.state.heuristic);
             const nodesInShortestPathOrder = ShortestPathBestFirst(finishNode);
+            this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
+        } else if (this.state.searchMethod === 'Recursive') {
+            const visitedNodesInOrder = Recursive(grid, startNode, finishNode, this.state.diagonal);
+            const nodesInShortestPathOrder = ShortestPathRecursion(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
     }
