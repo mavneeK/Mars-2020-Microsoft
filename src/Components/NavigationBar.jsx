@@ -32,10 +32,10 @@ export default class NavigationBar extends React.Component {
                     <button className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.resetGrid()}>
                         Reset Grid
                     </button>
-
                     <button className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.runAlgorithm()}>
                         Run Algorithm
                     </button>
+                    <span className="btn btn-dark border border-light rounded" style={{ marginLeft: "auto" }}>{this.props.guideText}</span>
                 </nav>
             </div >
         )

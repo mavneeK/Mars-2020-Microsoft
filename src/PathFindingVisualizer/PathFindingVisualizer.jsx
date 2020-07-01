@@ -24,7 +24,8 @@ export default class PathFindingVisualizer extends Component {
             isFinishChange: false,
             searchMethod: 'AStar',
             diagonal: false,
-            heuristic: "Manhattan"
+            heuristic: "Manhattan",
+            guideText: "A* is a weighted graph search algorithm"
         };
     }
 
@@ -165,10 +166,14 @@ export default class PathFindingVisualizer extends Component {
         }
     }
     searchMethod(newMethod) {
-        if (newMethod === 'Dijkstra' || newMethod === "BreathFirst" || newMethod === "DepthFirst") {
+        if (newMethod === 'Dijkstra' || newMethod === "BreathFirst" || newMethod === "DepthFirst" || newMethod === "Recursive") {
+            var st = newMethod + " is a non-heuristic based non-weighted search algorithm";
+            this.setState({ guideText: st });
             var h = document.getElementById("heuristic");
             h.disabled = true;
         } else {
+            var st = newMethod + " is a heuristic based search algorithm";
+            this.setState({ guideText: st })
             var h = document.getElementById("heuristic");
             h.disabled = false;
         }
@@ -196,7 +201,8 @@ export default class PathFindingVisualizer extends Component {
                     searchMethod={(newMethod) => this.searchMethod(newMethod)}
                     runAlgorithm={() => this.visualize()}
                     changeDiagonal={(check) => this.changeDiagonal()}
-                    changeHeuristic={(newHeuristic) => this.changeHeuristic(newHeuristic)}>
+                    changeHeuristic={(newHeuristic) => this.changeHeuristic(newHeuristic)}
+                    guideText={this.state.guideText}>
                 </NavigationBar>
                 <div className="grid">
                     {grid.map((row, rowIdx) => {
