@@ -21,6 +21,7 @@
   background-image: url('../../assets/weight.png');
   background-color: white;
 }
+
 .node-visited {
   animation-name: visitedAnimation;
   animation-duration: 1.5s;

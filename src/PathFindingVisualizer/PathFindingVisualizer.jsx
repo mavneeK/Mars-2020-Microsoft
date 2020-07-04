@@ -13,6 +13,8 @@ let START_NODE_ROW = 10;
 let START_NODE_COL = 15;
 let FINISH_NODE_ROW = 10;
 let FINISH_NODE_COL = 35;
+let NODE_WEIGHT = 35;
+
 
 export default class PathFindingVisualizer extends Component {
     constructor(props) {
@@ -275,7 +277,6 @@ const reset = (grid) => {
             node.isVisited = false;
             node.previousNode = null;
             node.distance = Infinity;
-            node.weight = 1;
             document.getElementById(`node-${node.row}-${node.col}`).classList.remove('node-visited');
             document.getElementById(`node-${node.row}-${node.col}`).classList.remove('node-shortest-path');
 
@@ -313,7 +314,7 @@ const getNewGridWithWeightToggled = (grid, row, col) => {
     const node = newGrid[row][col];
     const newNode = {
         ...node,
-        weight: 5,
+        weight: NODE_WEIGHT,
     };
     newGrid[row][col] = newNode;
     return newGrid;

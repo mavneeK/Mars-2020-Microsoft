@@ -30,7 +30,8 @@ function updateUnvisitedNeighbors(node, grid, diagonal) {
    const unvisitedNeighbors = getUnvisitedNeighbors(node, grid, diagonal);
    for (const neighbor of unvisitedNeighbors) {
       if (neighbor.distance > node.distance + 1) {
-         neighbor.distance = node.distance + 1;
+         neighbor.distance = node.distance + neighbor.weight * 1;
+         console.log(neighbor.weight);
          neighbor.previousNode = node;
       }
       if (neighbor.distance == node.distance + 1 && (Math.abs(neighbor.row - node.row) < 1 || Math.abs(neighbor.col - node.col) < 1)) {
