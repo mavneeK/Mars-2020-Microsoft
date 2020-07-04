@@ -32,6 +32,7 @@ export default class NavigationBar extends React.Component {
                     <button className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.resetGrid()}>
                         Reset Grid
                     </button>
+                    <span className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }}>Add Weights instead of wall <input type="checkbox" onClick={() => this.props.changeWeights()}></input></span>
                     <button className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.runAlgorithm()}>
                         Run Algorithm
                     </button>

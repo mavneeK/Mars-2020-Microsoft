@@ -24,6 +24,7 @@ export default class PathFindingVisualizer extends Component {
             isFinishChange: false,
             searchMethod: 'AStar',
             diagonal: false,
+            weight: false,
             heuristic: "Manhattan",
             guideText: "A* is a weighted graph search algorithm"
         };
@@ -47,8 +48,13 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ isFinishChange: true });
             return;
         }
-        const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
-        this.setState({ grid: newGrid, mouseIsPressed: true });
+        if (this.state.weight === true) {
+            const newGrid = getNewGridWithWeightToggled(this.state.grid, row, col);
+            this.setState({ grid: newGrid, mouseIsPressed: true });
+        } else {
+            const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
+            this.setState({ grid: newGrid, mouseIsPressed: true });
+        }
     }
 
     handleMouseEnter(row, col) {
@@ -73,8 +79,13 @@ export default class PathFindingVisualizer extends Component {
             return;
         }
         if (!this.state.mouseIsPressed) return;
-        const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
-        this.setState({ grid: newGrid });
+        if (this.state.weight === true) {
+            const newGrid = getNewGridWithWeightToggled(this.state.grid, row, col);
+            this.setState({ grid: newGrid, mouseIsPressed: true });
+        } else {
+            const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
+            this.setState({ grid: newGrid });
+        }
     }
 
     handleMouseUp(row, col) {
@@ -180,6 +191,7 @@ export default class PathFindingVisualizer extends Component {
         this.setState({ searchMethod: newMethod });
     }
 
+
     // function to change the heuristic based on the dropdown on navigation bar
     changeHeuristic(newHeuristic) {
         console.log(newHeuristic);
@@ -191,6 +203,11 @@ export default class PathFindingVisualizer extends Component {
         this.setState({ diagonal: !check });
     }
 
+    changeWeight() {
+        let check = this.state.weight;
+        this.setState({ weight: !check });
+    }
+
     render() {
         const { grid, mouseIsPressed } = this.state;
 
@@ -200,7 +217,8 @@ export default class PathFindingVisualizer extends Component {
                     resetGrid={this.resetGrid}
                     searchMethod={(newMethod) => this.searchMethod(newMethod)}
                     runAlgorithm={() => this.visualize()}
-                    changeDiagonal={(check) => this.changeDiagonal()}
+                    changeDiagonal={() => this.changeDiagonal()}
+                    changeWeights={() => this.changeWeight()}
                     changeHeuristic={(newHeuristic) => this.changeHeuristic(newHeuristic)}
                     guideText={this.state.guideText}>
                 </NavigationBar>
@@ -209,7 +227,7 @@ export default class PathFindingVisualizer extends Component {
                         return (
                             <div key={rowIdx}>
                                 {row.map((node, nodeIdx) => {
-                                    const { row, col, isFinish, isStart, isWall } = node;
+                                    const { row, col, isFinish, weight, isStart, isWall } = node;
                                     return (
                                         <Node
                                             key={nodeIdx}
@@ -217,6 +235,7 @@ export default class PathFindingVisualizer extends Component {
                                             isStart={isStart}
                                             isFinish={isFinish}
                                             isWall={isWall}
+                                            weight={weight}
                                             mouseIsPressed={mouseIsPressed}
                                             onMouseDown={(row, col) => this.handleMouseDown(row, col)}
                                             onMouseEnter={(row, col) =>
@@ -256,6 +275,7 @@ const reset = (grid) => {
             node.isVisited = false;
             node.previousNode = null;
             node.distance = Infinity;
+            node.weight = 1;
             document.getElementById(`node-${node.row}-${node.col}`).classList.remove('node-visited');
             document.getElementById(`node-${node.row}-${node.col}`).classList.remove('node-shortest-path');
 
@@ -272,6 +292,7 @@ const createNode = (col, row) => {
         distance: Infinity,
         isVisited: false,
         isWall: false,
+        weight: 1,
         previousNode: null,
     };
 };
@@ -282,6 +303,17 @@ const getNewGridWithWallToggled = (grid, row, col) => {
     const newNode = {
         ...node,
         isWall: !node.isWall,
+    };
+    newGrid[row][col] = newNode;
+    return newGrid;
+};
+
+const getNewGridWithWeightToggled = (grid, row, col) => {
+    const newGrid = grid.slice();
+    const node = newGrid[row][col];
+    const newNode = {
+        ...node,
+        weight: 5,
     };
     newGrid[row][col] = newNode;
     return newGrid;
