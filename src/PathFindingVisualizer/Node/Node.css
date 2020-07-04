@@ -17,11 +17,6 @@
 
 }
 
-.node-weight{
-  background-image: url('../../assets/rover.png');
-  background-color: blue;
-}
-
 .node-visited {
   animation-name: visitedAnimation;
   animation-duration: 1.5s;
