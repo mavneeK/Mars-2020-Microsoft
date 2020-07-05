@@ -12,8 +12,9 @@
 }
 
 .node-start {
-  background-image: url('../../assets/rover.png');
+  background-image: url('../../assets/tank.jpg');
   background-color: white;
+  background-size: 33px;
 
 }
 

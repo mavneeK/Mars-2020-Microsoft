@@ -13,6 +13,8 @@ let START_NODE_ROW = 10;
 let START_NODE_COL = 15;
 let FINISH_NODE_ROW = 10;
 let FINISH_NODE_COL = 35;
+let WINDOW_HEIGHT = 200;
+let WINDOW_WIDTH = 200;
 let NODE_WEIGHT = 10;
 
 
@@ -25,6 +27,8 @@ export default class PathFindingVisualizer extends Component {
             isStartChange: false,
             isFinishChange: false,
             searchMethod: 'AStar',
+            WINDOW_HEIGHT: 400,
+            WINDOW_WIDTH: 1980,
             diagonal: false,
             weight: false,
             heuristic: "Manhattan",
@@ -32,10 +36,27 @@ export default class PathFindingVisualizer extends Component {
         };
     }
 
-    componentDidMount() {
-        const grid = getInitialGrid();
-        this.setState({ grid });
+    updateDimensions() {
+        var win = window,
+            doc = document,
+            docElem = doc.documentElement,
+            body = doc.getElementsByTagName('body')[0],
+            x = win.innerWidth || docElem.clientWidth || body.clientWidth,
+            y = win.innerHeight || docElem.clientHeight || body.clientHeight;
+        WINDOW_WIDTH = x;
+        WINDOW_HEIGHT = y;
+        this.setState({ WINDOW_HEIGHT: y, WINDOW_WIDTH: x });
     }
+
+    componentDidMount() {
+        const grid = this.getInitialGrid();
+        this.setState({ grid });
+        this.updateDimensions();
+        window.addEventListener("resize", this.updateDimensions.bind(this));
+        // console.log(window.screen.height);
+        // console.log(window.screen.width);
+    }
+
 
     resetGrid = () => {
         window.location.reload(false);
@@ -63,14 +84,14 @@ export default class PathFindingVisualizer extends Component {
         if (this.state.isStartChange === true) {
             START_NODE_ROW = row;
             START_NODE_COL = col;
-            const grid = getInitialGrid();
+            const grid = this.getInitialGrid();
             this.setState({ grid });
             return;
         }
         if (this.state.isFinishChange === true) {
             FINISH_NODE_ROW = row;
             FINISH_NODE_COL = col;
-            const grid = getInitialGrid();
+            const grid = this.getInitialGrid();
             this.setState({ grid });
             return;
         }
@@ -94,13 +115,13 @@ export default class PathFindingVisualizer extends Component {
         if (this.state.isStartChange === true) {
             START_NODE_ROW = row;
             START_NODE_COL = col;
-            const grid = getInitialGrid();
+            const grid = this.getInitialGrid();
             this.setState({ grid });
         }
         if (this.state.isFinishChange === true) {
             FINISH_NODE_ROW = row;
             FINISH_NODE_COL = col;
-            const grid = getInitialGrid();
+            const grid = this.getInitialGrid();
             this.setState({ grid });
         }
         this.setState({ isStartChange: false });
@@ -225,6 +246,19 @@ export default class PathFindingVisualizer extends Component {
         this.setState({ weight: !check });
     }
 
+    getInitialGrid = () => {
+        const grid = [];
+        for (let row = 0; row < this.state.WINDOW_HEIGHT / 25; row++) {
+            const currentRow = [];
+            for (let col = 0; col < this.state.WINDOW_WIDTH / 25; col++) {
+                const node = createNode(col, row);
+                currentRow.push(node);
+            }
+            grid.push(currentRow);
+        }
+        return grid;
+    };
+
     render() {
         const { grid, mouseIsPressed } = this.state;
 
@@ -274,18 +308,7 @@ export default class PathFindingVisualizer extends Component {
     }
 }
 
-const getInitialGrid = () => {
-    const grid = [];
-    for (let row = 0; row < 31; row++) {
-        const currentRow = [];
-        for (let col = 0; col < 69; col++) {
-            const node = createNode(col, row);
-            currentRow.push(node);
-        }
-        grid.push(currentRow);
-    }
-    return grid;
-};
+
 
 const reset = (grid) => {
     for (const row of grid) {
