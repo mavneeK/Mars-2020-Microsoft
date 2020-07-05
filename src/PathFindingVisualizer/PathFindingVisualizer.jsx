@@ -27,8 +27,8 @@ export default class PathFindingVisualizer extends Component {
             isStartChange: false,
             isFinishChange: false,
             searchMethod: 'AStar',
-            WINDOW_HEIGHT: 400,
-            WINDOW_WIDTH: 1980,
+            WINDOW_HEIGHT: 100,
+            WINDOW_WIDTH: 100,
             diagonal: false,
             weight: false,
             heuristic: "Manhattan",
@@ -46,15 +46,23 @@ export default class PathFindingVisualizer extends Component {
         WINDOW_WIDTH = x;
         WINDOW_HEIGHT = y;
         this.setState({ WINDOW_HEIGHT: y, WINDOW_WIDTH: x });
+        // console.log(x, y)
+        const grid = this.getInitialGrid();
+        this.setState({ grid })
+        // console.log("Runn");
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        await this.updateDimensions();
+        window.addEventListener("resize", this.updateDimensions.bind(this));
         const grid = this.getInitialGrid();
         this.setState({ grid });
-        this.updateDimensions();
-        window.addEventListener("resize", this.updateDimensions.bind(this));
         // console.log(window.screen.height);
         // console.log(window.screen.width);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions.bind(this));
     }
 
 
@@ -248,9 +256,9 @@ export default class PathFindingVisualizer extends Component {
 
     getInitialGrid = () => {
         const grid = [];
-        for (let row = 0; row < this.state.WINDOW_HEIGHT / 25; row++) {
+        for (let row = 0; row < (this.state.WINDOW_HEIGHT / 25) - 4; row++) {
             const currentRow = [];
-            for (let col = 0; col < this.state.WINDOW_WIDTH / 25; col++) {
+            for (let col = 0; col < (this.state.WINDOW_WIDTH / 25) - 3; col++) {
                 const node = createNode(col, row);
                 currentRow.push(node);
             }

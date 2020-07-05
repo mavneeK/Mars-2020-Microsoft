@@ -34,7 +34,7 @@ function updateUnvisitedNeighbors(node, grid, diagonal) {
          console.log(neighbor.weight);
          neighbor.previousNode = node;
       }
-      if (neighbor.distance == node.distance + 1 && (Math.abs(neighbor.row - node.row) < 1 || Math.abs(neighbor.col - node.col) < 1)) {
+      if (neighbor.distance === node.distance + 1 && (Math.abs(neighbor.row - node.row) < 1 || Math.abs(neighbor.col - node.col) < 1)) {
          neighbor.previousNode = node;
       }
    }
