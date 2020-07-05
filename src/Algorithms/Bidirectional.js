@@ -38,7 +38,7 @@ function BFSOne(grid, s_queue, diagonal, visitedNodes) {
         console.log("NEE")
         // console.log(neighbor)
         console.log(neighbor.isVisited_o)
-        if (neighbor.isVisited_o === false) {
+        if (neighbor.isVisited_o === false && neighbor.isWall === false) {
             neighbor.previousNode_o = current;
             console.log("INNEE")
             neighbor.isVisited_o = true;
@@ -54,7 +54,7 @@ function BFSTwo(grid, t_queue, diagonal, visitedNodes) {
     var neighbors = getUnvisitedNeighbors(current, grid, diagonal);
     for (const neighbor of neighbors) {
         console.log("NEE")
-        if (neighbor.isVisited_t === false) {
+        if (neighbor.isVisited_t === false && neighbor.isWall === false) {
 
             neighbor.previousNode_t = current;
             console.log("INNEE")

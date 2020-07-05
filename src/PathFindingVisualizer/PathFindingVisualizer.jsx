@@ -214,7 +214,7 @@ export default class PathFindingVisualizer extends Component {
         }
     }
     searchMethod(newMethod) {
-        if (newMethod === 'Dijkstra' || newMethod === "BreathFirst" || newMethod === "DepthFirst" || newMethod === "Recursive") {
+        if (newMethod === 'Dijkstra' || newMethod === "BreathFirst" || newMethod === "DepthFirst" || newMethod === "Recursive" || newMethod === "Bidirectional") {
             var st = newMethod + " is a non-heuristic based non-weighted search algorithm";
             this.setState({ guideText: st });
             var h = document.getElementById("heuristic");
@@ -225,7 +225,7 @@ export default class PathFindingVisualizer extends Component {
             var h = document.getElementById("heuristic");
             h.disabled = false;
         }
-        if (newMethod === "BreathFirst" || newMethod === "DepthFirst" || newMethod === "Recursive") {
+        if (newMethod === "BreathFirst" || newMethod === "DepthFirst" || newMethod === "Recursive" || newMethod === "Bidirectional") {
             var h = document.getElementById('addWeights');
             h.disabled = true;
         } else {
