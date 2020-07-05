@@ -76,7 +76,9 @@
 @keyframes shortestPath {
   0% {
     transform: scale(0.6);
-    background-image: url('../../assets/rover.png');
+    background-image: url('../../assets/tank.jpg');
+    background-size: 33px;
+
     background-color: rgb(255, 255, 255);
 
     /* background-color: rgb(255, 254, 106); */

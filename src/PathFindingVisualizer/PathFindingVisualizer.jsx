@@ -146,10 +146,10 @@ export default class PathFindingVisualizer extends Component {
                 }, 10 * i);
                 return;
             }
-            if (i === 0) {
+            if (visitedNodesInOrder[i].isStart === true) {
                 continue;
             }
-            if (i === visitedNodesInOrder.length - 1) {
+            if (visitedNodesInOrder[i].isFinish === true) {
                 continue;
             }
             setTimeout(() => {
@@ -161,10 +161,10 @@ export default class PathFindingVisualizer extends Component {
 
     animateShortestPath(nodesInShortestPathOrder) {
         for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
-            if (i === 0) {
+            if (nodesInShortestPathOrder[i].isStart === true) {
                 continue;
             }
-            if (i === nodesInShortestPathOrder.length - 1) {
+            if (nodesInShortestPathOrder[i].isFinish === true) {
                 continue;
             }
             setTimeout(() => {
@@ -208,7 +208,7 @@ export default class PathFindingVisualizer extends Component {
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'Bidirectional') {
             const visitedNodesInOrder = Bidirectional(grid, startNode, finishNode, this.state.diagonal);
-            const nodesInShortestPathOrder = printPath(finishNode);
+            const nodesInShortestPathOrder = printPath(grid, startNode, finishNode);
             console.log(nodesInShortestPathOrder.length);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
@@ -345,6 +345,10 @@ const createNode = (col, row) => {
         isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
         distance: Infinity,
         isVisited: false,
+        previousNode_o: null,
+        previousNode_t: null,
+        isVisited_o: false,
+        isVisited_t: false,
         isWall: false,
         weight: 1,
         previousNode: null,
