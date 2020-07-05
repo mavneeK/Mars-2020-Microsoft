@@ -8,6 +8,7 @@ import { Dijkstra, ShortestPathDijkstra } from '../Algorithms/Dijkstra';
 import { AStar, ShortestPathAStar } from '../Algorithms/A-Star';
 import { BestFirst, ShortestPathBestFirst } from '../Algorithms/BestFirst'
 import { Recursive, ShortestPathRecursion } from '../Algorithms/Recursive';
+import { Bidirectional, printPath } from '../Algorithms/Bidirectional';
 
 let START_NODE_ROW = 10;
 let START_NODE_COL = 15;
@@ -204,6 +205,11 @@ export default class PathFindingVisualizer extends Component {
         } else if (this.state.searchMethod === 'Recursive') {
             const visitedNodesInOrder = Recursive(grid, startNode, finishNode, this.state.diagonal);
             const nodesInShortestPathOrder = ShortestPathRecursion(finishNode);
+            this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
+        } else if (this.state.searchMethod === 'Bidirectional') {
+            const visitedNodesInOrder = Bidirectional(grid, startNode, finishNode, this.state.diagonal);
+            const nodesInShortestPathOrder = printPath(finishNode);
+            console.log(nodesInShortestPathOrder.length);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
     }
