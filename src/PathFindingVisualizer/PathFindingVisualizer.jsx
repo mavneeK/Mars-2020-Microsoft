@@ -13,7 +13,7 @@ let START_NODE_ROW = 10;
 let START_NODE_COL = 15;
 let FINISH_NODE_ROW = 10;
 let FINISH_NODE_COL = 35;
-let NODE_WEIGHT = 35;
+let NODE_WEIGHT = 10;
 
 
 export default class PathFindingVisualizer extends Component {

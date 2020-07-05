@@ -44,21 +44,21 @@ function initialiseHeuristic(grid, finishNode, heuristic) {
 
 function getHeuristicValue(node, heuristic, finishNode) {
     if (heuristic === 'Manhattan') {
-        return (Math.abs(node.row - finishNode.row) + Math.abs(node.col - finishNode.col));
+        return node.weight * (Math.abs(node.row - finishNode.row) + Math.abs(node.col - finishNode.col));
     }
     if (heuristic === 'Euclidean') {
         // console.log("R");
-        return Math.sqrt((Math.pow(node.row - finishNode.row, 2) + (Math.pow(node.col - finishNode.col, 2))));
+        return node.weight * Math.sqrt((Math.pow(node.row - finishNode.row, 2) + (Math.pow(node.col - finishNode.col, 2))));
         // return Math.sqrt(((node.row - finishNode.row) << (2)) + ((node.col - finishNode.col) << (2)));  // done for better performance
     }
     if (heuristic === 'DiagonalDistance') {
-        return Math.max(Math.abs(node.row - finishNode.row), Math.abs(node.col - finishNode.col));
+        return node.weight * Math.max(Math.abs(node.row - finishNode.row), Math.abs(node.col - finishNode.col));
     }
     if (heuristic === 'Octile') {
         var F = Math.SQRT2 - 1;
         var dx = Math.abs(node.row - finishNode.row);
         var dy = Math.abs(node.col - finishNode.col);
-        return F * Math.min(dx, dy) + Math.abs(dx - dy);
+        return node.weight * F * Math.min(dx, dy) + Math.abs(dx - dy);
     }
 }
 
