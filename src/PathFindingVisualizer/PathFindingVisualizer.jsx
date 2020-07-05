@@ -193,6 +193,14 @@ export default class PathFindingVisualizer extends Component {
         this.setState({ searchMethod: newMethod });
     }
 
+    changeWeights(value) {
+        // console.log(value);
+        if (value > 1) {
+            NODE_WEIGHT = value;
+            console.log(NODE_WEIGHT);
+        }
+
+    }
 
     // function to change the heuristic based on the dropdown on navigation bar
     changeHeuristic(newHeuristic) {
@@ -220,8 +228,9 @@ export default class PathFindingVisualizer extends Component {
                     searchMethod={(newMethod) => this.searchMethod(newMethod)}
                     runAlgorithm={() => this.visualize()}
                     changeDiagonal={() => this.changeDiagonal()}
-                    changeWeights={() => this.changeWeight()}
+                    changeWeights={() => this.changeWeight()} // to switch the toggle of weight
                     changeHeuristic={(newHeuristic) => this.changeHeuristic(newHeuristic)}
+                    changeWeight={(value) => this.changeWeights(value)}  // to change the value of weight
                     guideText={this.state.guideText}>
                 </NavigationBar>
                 <div className="grid">
