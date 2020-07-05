@@ -190,6 +190,13 @@ export default class PathFindingVisualizer extends Component {
             var h = document.getElementById("heuristic");
             h.disabled = false;
         }
+        if (newMethod === "BreathFirst" || newMethod === "DepthFirst" || newMethod === "Recursive") {
+            var h = document.getElementById('addWeights');
+            h.disabled = true;
+        } else {
+            var h = document.getElementById('addWeights');
+            h.disabled = false;
+        }
         this.setState({ searchMethod: newMethod });
     }
 

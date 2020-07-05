@@ -39,12 +39,12 @@ export default class NavigationBar extends React.Component {
                     <button className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.resetGrid()}>
                         Reset Grid
                     </button>
-                    <span className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }}>Add Weights Instead Of Walls  <input type="checkbox" onClick={() => this.props.changeWeights()}></input></span>
+                    <span className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }}>Add Weights Instead Of Walls  <input type="checkbox" id="addWeights" onClick={() => this.props.changeWeights()}></input></span>
                     <button className="btn btn-dark border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.runAlgorithm()}>
                         Run Algorithm
                     </button>
                     <span style={{ marginRight: "10px", marginLeft: "10px" }} className="btn btn-dark border border-light text-light rounded">Weight:</span>
-                    <input style={{ width: "10%" }} className="btn btn-dark border border-light text-light rounded" placeholder="10" type="number" onChange={(event) => this.props.changeWeight(event.target.value)}>
+                    <input style={{ width: "10%" }} className="btn btn-dark border border-light text-light rounded" placeholder="10" id="weight" type="number" onChange={(event) => this.props.changeWeight(event.target.value)}>
                     </input>
                     {/* <span className="btn btn-dark border border-light rounded" style={{ marginLeft: "auto" }}>{this.props.guideText}</span> */}
                 </nav>
