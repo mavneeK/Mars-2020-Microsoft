@@ -3,5 +3,7 @@
     margin-left: 10px;
     border: 10px;
     border-color: black;
+    font-size: 0;
+
     /* background-image: url('../assets/mars_surface.jpg'); */
 }
