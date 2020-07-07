@@ -232,6 +232,10 @@ export default class PathFindingVisualizer extends Component {
             var h = document.getElementById('addWeights');
             h.disabled = false;
         }
+        if (newMethod === 'Dijkstra') {
+            var st = newMethod + " is a non-heuristic based weighted search algorithm";
+            this.setState({ guideText: st });
+        }
         this.setState({ searchMethod: newMethod });
     }
 

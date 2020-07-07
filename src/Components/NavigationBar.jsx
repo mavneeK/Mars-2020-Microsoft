@@ -47,7 +47,7 @@ export default class NavigationBar extends React.Component {
                     <span style={{ marginRight: "10px", marginLeft: "10px" }} className="btn btn-dark border border-light text-light rounded">Weight:</span>
                     <input style={{ width: "10%" }} className="btn btn-dark border border-light text-light rounded" placeholder="10" id="weight" type="number" onChange={(event) => this.props.changeWeight(event.target.value)}>
                     </input>
-                    {/* <span className="btn btn-dark border border-light rounded" style={{ marginLeft: "auto" }}>{this.props.guideText}</span> */}
+                    <span className="btn btn-dark border border-light rounded" style={{ marginLeft: "auto" }}>{this.props.guideText}</span>
                 </nav>
             </div >
         )
