@@ -9,6 +9,7 @@ import { AStar, ShortestPathAStar } from '../Algorithms/A-Star';
 import { BestFirst, ShortestPathBestFirst } from '../Algorithms/BestFirst'
 import { Recursive, ShortestPathRecursion } from '../Algorithms/Recursive';
 import { Bidirectional, printPath } from '../Algorithms/Bidirectional';
+import DetailGrid from '../Components/DetailGrid';
 
 let START_NODE_ROW = 10;
 let START_NODE_COL = 15;
@@ -32,6 +33,8 @@ export default class PathFindingVisualizer extends Component {
             WINDOW_WIDTH: 100,
             diagonal: false,
             weight: false,
+            operations: 0,
+            time: 0,
             heuristic: "Manhattan",
             guideText: "A* is a weighted graph search algorithm"
         };
@@ -181,35 +184,62 @@ export default class PathFindingVisualizer extends Component {
         const startNode = grid[START_NODE_ROW][START_NODE_COL];
         const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
         if (this.state.searchMethod === 'Dijkstra') {
+            var start = performance.now()
             const visitedNodesInOrder = Dijkstra(grid, startNode, finishNode, this.state.diagonal);
+            var end = performance.now();
+            console.log("YP")
+            this.setState({ time: (end - start).toFixed(2) });
+            this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathDijkstra(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'BreathFirst') {
+            var start = performance.now()
             const visitedNodesInOrder = BreathFirst(grid, startNode, finishNode, this.state.diagonal);
+            var end = performance.now();
+            this.setState({ time: (end - start).toFixed(2) });
+            this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathBreathFirst(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'DepthFirst') {
+            var start = performance.now()
             const visitedNodesInOrder = DepthFirst(grid, startNode, finishNode, this.state.diagonal);
+            var end = performance.now();
+            this.setState({ time: (end - start).toFixed(2) });
+            this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathDepthFirst(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'AStar') {
+            var start = performance.now()
             const visitedNodesInOrder = AStar(grid, startNode, finishNode, this.state.diagonal, this.state.heuristic);
+            var end = performance.now();
+            this.setState({ time: (end - start).toFixed(2) });
+            this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathAStar(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
         else if (this.state.searchMethod === 'BestFirst') {
-            console.log("R");
+            var start = performance.now()
             const visitedNodesInOrder = BestFirst(grid, startNode, finishNode, this.state.diagonal, this.state.heuristic);
+            var end = performance.now();
+            this.setState({ time: (end - start).toFixed(2) });
+            this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathBestFirst(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'Recursive') {
+            var start = performance.now()
             const visitedNodesInOrder = Recursive(grid, startNode, finishNode, this.state.diagonal);
+            var end = performance.now();
+            this.setState({ time: (end - start).toFixed(2) });
+            this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathRecursion(finishNode);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'Bidirectional') {
+            var start = performance.now()
             const visitedNodesInOrder = Bidirectional(grid, startNode, finishNode, this.state.diagonal);
+            var end = performance.now();
+            this.setState({ time: (end - start).toFixed(2) });
+            this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = printPath(grid, startNode, finishNode);
-            console.log(nodesInShortestPathOrder.length);
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
     }
@@ -266,7 +296,7 @@ export default class PathFindingVisualizer extends Component {
 
     getInitialGrid = () => {
         const grid = [];
-        for (let row = 0; row < (this.state.WINDOW_HEIGHT / 25) - 4; row++) {
+        for (let row = 0; row < (this.state.WINDOW_HEIGHT / 25) - 5; row++) {
             const currentRow = [];
             for (let col = 0; col < (this.state.WINDOW_WIDTH / 25) - 3; col++) {
                 const node = createNode(col, row);
@@ -290,8 +320,11 @@ export default class PathFindingVisualizer extends Component {
                     changeWeights={() => this.changeWeight()} // to switch the toggle of weight
                     changeHeuristic={(newHeuristic) => this.changeHeuristic(newHeuristic)}
                     changeWeight={(value) => this.changeWeights(value)}  // to change the value of weight
-                    guideText={this.state.guideText}>
+                >
                 </NavigationBar>
+                <DetailGrid guideText={this.state.guideText}
+                    operations={this.state.operations}
+                    time={this.state.time}></DetailGrid>
                 <div className="grid">
                     {grid.map((row, rowIdx) => {
                         return (
