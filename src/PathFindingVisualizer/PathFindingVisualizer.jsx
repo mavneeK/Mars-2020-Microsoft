@@ -35,6 +35,7 @@ export default class PathFindingVisualizer extends Component {
             weight: false,
             operations: 0,
             time: 0,
+            shortestPathLength: 0,
             heuristic: "Manhattan",
             guideText: "A* is a weighted graph search algorithm"
         };
@@ -324,7 +325,8 @@ export default class PathFindingVisualizer extends Component {
                 </NavigationBar>
                 <DetailGrid guideText={this.state.guideText}
                     operations={this.state.operations}
-                    time={this.state.time}></DetailGrid>
+                    time={this.state.time}
+                    shortestPathLength={this.state.shortestPathLength}></DetailGrid>
                 <div className="grid">
                     {grid.map((row, rowIdx) => {
                         return (
