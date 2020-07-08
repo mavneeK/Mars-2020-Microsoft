@@ -192,6 +192,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathDijkstra(finishNode);
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'BreathFirst') {
             var start = performance.now()
@@ -200,6 +201,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathBreathFirst(finishNode);
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'DepthFirst') {
             var start = performance.now()
@@ -208,6 +210,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathDepthFirst(finishNode);
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'AStar') {
             var start = performance.now()
@@ -216,6 +219,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathAStar(finishNode);
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
         else if (this.state.searchMethod === 'BestFirst') {
@@ -225,6 +229,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathBestFirst(finishNode);
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'Recursive') {
             var start = performance.now()
@@ -233,6 +238,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathRecursion(finishNode);
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'Bidirectional') {
             var start = performance.now()
@@ -241,6 +247,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = printPath(grid, startNode, finishNode);
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
     }
