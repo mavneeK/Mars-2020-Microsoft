@@ -2,6 +2,7 @@ import React from 'react';
 import './NavigationBar.css';
 
 var mars_image = require('../assets/mars_icon.png')
+var alien = require('../assets/alien.gif');
 
 
 export default class NavigationBar extends React.Component {
@@ -51,6 +52,7 @@ export default class NavigationBar extends React.Component {
                         <span style={{ marginRight: "10px", marginLeft: "10px" }} className="btn btn-dark border border-light text-light rounded">Weight:</span>
                         <input style={{ width: "10%" }} className="btn btn-dark border border-light text-light rounded" placeholder="10" id="weight" type="number" onChange={(event) => this.props.changeWeight(event.target.value)}>
                         </input>
+                        <img src={alien} height="40px" width="40px" style={{ marginRight: "10px" }}></img>
                     </div>
                 </nav>
             </div >
