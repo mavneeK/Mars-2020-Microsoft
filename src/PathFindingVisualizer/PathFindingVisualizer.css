@@ -4,6 +4,7 @@
     border: 10px;
     border-color: black;
     font-size: 0;
-
+    margin-bottom: 10px;
+    padding-bottom: 7px;
     /* background-image: url('../assets/mars_surface.jpg'); */
 }

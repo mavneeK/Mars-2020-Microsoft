@@ -274,6 +274,10 @@ export default class PathFindingVisualizer extends Component {
             var st = newMethod + " is a non-heuristic based weighted search algorithm";
             this.setState({ guideText: st });
         }
+        if (newMethod === 'Recursive') {
+            var st = newMethod + " is a non-weighted search algorithm and does not guarantee shortest path";
+            this.setState({ guideText: st });
+        }
         this.setState({ searchMethod: newMethod });
     }
 
@@ -335,6 +339,7 @@ export default class PathFindingVisualizer extends Component {
                     time={this.state.time}
                     shortestPathLength={this.state.shortestPathLength}></DetailGrid>
                 <div className="grid">
+                    {/* <img src={marsPlanet} height="100px" style={{ position: "absolute" }}></img> */}
                     {grid.map((row, rowIdx) => {
                         return (
                             <div key={rowIdx}>
