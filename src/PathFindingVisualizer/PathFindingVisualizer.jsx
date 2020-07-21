@@ -331,6 +331,7 @@ export default class PathFindingVisualizer extends Component {
             for (var ele of element) {
                 ele.style.backgroundColor = '#a13d2d';
             }
+            document.body.style.backgroundColor = '#000000'
             element = document.getElementsByClassName('navbar');
             for (var ele of element) {
                 //ele.classList.add('bg-dark');
@@ -360,6 +361,7 @@ export default class PathFindingVisualizer extends Component {
             for (var ele of element) {
                 ele.style.backgroundColor = '#ffffff';
             }
+            document.body.style.backgroundColor = '#ffffff'
 
             // change to white mode
             element = document.getElementsByClassName('navbar');
@@ -402,6 +404,7 @@ export default class PathFindingVisualizer extends Component {
                 ele.classList.remove('navbar-light');
                 ele.style.backgroundColor = '#000000';
             }
+            document.body.style.backgroundColor = '#000000'
             element = document.getElementsByClassName('n');
             for (var ele of element) {
                 //ele.classList.add('bg-dark');
@@ -420,6 +423,7 @@ export default class PathFindingVisualizer extends Component {
             for (var ele of element) {
                 ele.style.backgroundColor = '#ffffff';
             }
+            document.body.style.backgroundColor = '#ffffff'
 
             // change to white mode
             element = document.getElementsByClassName('navbar');
