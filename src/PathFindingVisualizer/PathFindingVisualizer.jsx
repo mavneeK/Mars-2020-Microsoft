@@ -55,6 +55,7 @@ export default class PathFindingVisualizer extends Component {
         // console.log(x, y)
         const grid = this.getInitialGrid();
         this.setState({ grid })
+        this.checkTheme();
         // console.log("Runn");
     }
 
@@ -353,6 +354,66 @@ export default class PathFindingVisualizer extends Component {
             }
         } else {
             this.setState({ theme: 0 });
+            var element = document.getElementsByClassName('App')[0];
+            element.style.backgroundColor = '#ffffff';
+            element = document.getElementsByClassName('node');
+            for (var ele of element) {
+                ele.style.backgroundColor = '#ffffff';
+            }
+
+            // change to white mode
+            element = document.getElementsByClassName('navbar');
+            for (var ele of element) {
+                ele.classList.remove('bg-dark');
+                ele.classList.add('bg-light');
+                ele.classList.remove('text-light');
+                ele.classList.add('text-dark');
+                ele.classList.remove('navbar-dark');
+                ele.classList.add('navbar-light');
+            }
+            element = document.getElementsByClassName('n');
+            for (var ele of element) {
+                ele.classList.remove('bg-dark');
+                ele.classList.add('bg-light');
+                ele.classList.remove('text-light');
+                ele.classList.add('text-dark');
+                ele.classList.remove('navbar-dark');
+                ele.classList.add('navbar-light');
+            }
+        }
+    }
+
+    checkTheme = () => {
+        if (this.state.theme === 1) {
+            // change to dark mode 
+            var element = document.getElementsByClassName('App')[0];
+            element.style.backgroundColor = '#000000';
+            element = document.getElementsByClassName('node');
+            for (var ele of element) {
+                ele.style.backgroundColor = '#a13d2d';
+            }
+            element = document.getElementsByClassName('navbar');
+            for (var ele of element) {
+                //ele.classList.add('bg-dark');
+                ele.classList.remove('bg-light');
+                ele.classList.add('text-light');
+                ele.classList.remove('text-dark');
+                ele.classList.add('navbar-dark');
+                ele.classList.remove('navbar-light');
+                ele.style.backgroundColor = '#000000';
+            }
+            element = document.getElementsByClassName('n');
+            for (var ele of element) {
+                //ele.classList.add('bg-dark');
+                ele.classList.remove('bg-light');
+                ele.classList.add('text-light');
+                ele.classList.remove('text-dark');
+                ele.classList.add('navbar-dark');
+                ele.classList.remove('navbar-light');
+                ele.style.backgroundColor = '#000000';
+
+            }
+        } else {
             var element = document.getElementsByClassName('App')[0];
             element.style.backgroundColor = '#ffffff';
             element = document.getElementsByClassName('node');
