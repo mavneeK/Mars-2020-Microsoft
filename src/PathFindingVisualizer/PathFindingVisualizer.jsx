@@ -37,7 +37,8 @@ export default class PathFindingVisualizer extends Component {
             time: 0,
             shortestPathLength: 0,
             heuristic: "Manhattan",
-            guideText: "A* is a weighted graph search algorithm"
+            guideText: "A* is a weighted graph search algorithm",
+            theme: 0
         };
     }
 
@@ -192,7 +193,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathDijkstra(finishNode);
-            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length === 1 ? 0 : nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'BreathFirst') {
             var start = performance.now()
@@ -201,7 +202,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathBreathFirst(finishNode);
-            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length === 1 ? 0 : nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'DepthFirst') {
             var start = performance.now()
@@ -210,7 +211,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathDepthFirst(finishNode);
-            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length === 1 ? 0 : nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'AStar') {
             var start = performance.now()
@@ -219,7 +220,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathAStar(finishNode);
-            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length === 1 ? 0 : nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
         else if (this.state.searchMethod === 'BestFirst') {
@@ -229,7 +230,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathBestFirst(finishNode);
-            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length === 1 ? 0 : nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'Recursive') {
             var start = performance.now()
@@ -238,7 +239,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathRecursion(finishNode);
-            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length === 1 ? 0 : nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'Bidirectional') {
             var start = performance.now()
@@ -247,7 +248,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = printPath(grid, startNode, finishNode);
-            this.setState({ shortestPathLength: nodesInShortestPathOrder.length });
+            this.setState({ shortestPathLength: nodesInShortestPathOrder.length === 1 ? 0 : nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         }
     }
@@ -319,6 +320,28 @@ export default class PathFindingVisualizer extends Component {
         return grid;
     };
 
+    theme = () => {
+        if (this.state.theme === 0) {
+            // change to dark mode 
+            this.setState({ theme: 1 });
+            var element = document.getElementsByClassName('App')[0];
+            element.style.backgroundColor = '#000000';
+            element = document.getElementsByClassName('node');
+            for (var ele of element) {
+                ele.style.backgroundColor = '#a13d2d';
+            }
+        } else {
+            this.setState({ theme: 0 });
+            var element = document.getElementsByClassName('App')[0];
+            element.style.backgroundColor = '#ffffff';
+            element = document.getElementsByClassName('node');
+            for (var ele of element) {
+                ele.style.backgroundColor = '#ffffff';
+            }
+            // change to white mode
+        }
+    }
+
     render() {
         const { grid, mouseIsPressed } = this.state;
 
@@ -332,6 +355,7 @@ export default class PathFindingVisualizer extends Component {
                     changeWeights={() => this.changeWeight()} // to switch the toggle of weight
                     changeHeuristic={(newHeuristic) => this.changeHeuristic(newHeuristic)}
                     changeWeight={(value) => this.changeWeights(value)}  // to change the value of weight
+                    theme={() => this.theme()}
                 >
                 </NavigationBar>
                 <DetailGrid guideText={this.state.guideText}

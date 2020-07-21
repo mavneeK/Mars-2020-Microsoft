@@ -54,8 +54,14 @@ export default class NavigationBar extends React.Component {
                         </input>
                         <img src={alien} height="40px" width="40px" style={{ marginRight: "10px" }}></img>
                     </div>
+                    <span className="btn btn-dark rounded">Mars Mode:</span>
+                    <label className="switch">
+                        <input type="checkbox" onChange={() => this.props.theme()} />
+                        <span className="slider round"></span>
+                    </label>
                 </nav>
             </div >
+
         )
     }
 }
