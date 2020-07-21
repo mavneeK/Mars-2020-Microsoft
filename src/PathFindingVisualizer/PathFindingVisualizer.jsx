@@ -332,21 +332,24 @@ export default class PathFindingVisualizer extends Component {
             }
             element = document.getElementsByClassName('navbar');
             for (var ele of element) {
-                ele.classList.add('bg-dark');
+                //ele.classList.add('bg-dark');
                 ele.classList.remove('bg-light');
                 ele.classList.add('text-light');
                 ele.classList.remove('text-dark');
                 ele.classList.add('navbar-dark');
                 ele.classList.remove('navbar-light');
+                ele.style.backgroundColor = '#000000';
             }
             element = document.getElementsByClassName('n');
             for (var ele of element) {
-                ele.classList.add('bg-dark');
+                //ele.classList.add('bg-dark');
                 ele.classList.remove('bg-light');
                 ele.classList.add('text-light');
                 ele.classList.remove('text-dark');
                 ele.classList.add('navbar-dark');
                 ele.classList.remove('navbar-light');
+                ele.style.backgroundColor = '#000000';
+
             }
         } else {
             this.setState({ theme: 0 });

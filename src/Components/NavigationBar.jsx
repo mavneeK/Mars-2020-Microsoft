@@ -20,7 +20,7 @@ export default class NavigationBar extends React.Component {
     render() {
         return (
             <div>
-                <nav id="mode" className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav id="mode" style={{ backgroundColor: '#123123' }} className="navbar navbar-expand-lg navbar-light bg-light">
                     <a className="navbar-brand" href="/"><img src={mars_image} height="24px" width="24px" style={{ marginRight: "10px" }}></img>Mars 2020</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
