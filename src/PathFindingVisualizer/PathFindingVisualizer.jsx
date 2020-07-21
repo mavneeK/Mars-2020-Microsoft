@@ -330,6 +330,24 @@ export default class PathFindingVisualizer extends Component {
             for (var ele of element) {
                 ele.style.backgroundColor = '#a13d2d';
             }
+            element = document.getElementsByClassName('navbar');
+            for (var ele of element) {
+                ele.classList.add('bg-dark');
+                ele.classList.remove('bg-light');
+                ele.classList.add('text-light');
+                ele.classList.remove('text-dark');
+                ele.classList.add('navbar-dark');
+                ele.classList.remove('navbar-light');
+            }
+            element = document.getElementsByClassName('n');
+            for (var ele of element) {
+                ele.classList.add('bg-dark');
+                ele.classList.remove('bg-light');
+                ele.classList.add('text-light');
+                ele.classList.remove('text-dark');
+                ele.classList.add('navbar-dark');
+                ele.classList.remove('navbar-light');
+            }
         } else {
             this.setState({ theme: 0 });
             var element = document.getElementsByClassName('App')[0];
@@ -338,7 +356,26 @@ export default class PathFindingVisualizer extends Component {
             for (var ele of element) {
                 ele.style.backgroundColor = '#ffffff';
             }
+
             // change to white mode
+            element = document.getElementsByClassName('navbar');
+            for (var ele of element) {
+                ele.classList.remove('bg-dark');
+                ele.classList.add('bg-light');
+                ele.classList.remove('text-light');
+                ele.classList.add('text-dark');
+                ele.classList.remove('navbar-dark');
+                ele.classList.add('navbar-light');
+            }
+            element = document.getElementsByClassName('n');
+            for (var ele of element) {
+                ele.classList.remove('bg-dark');
+                ele.classList.add('bg-light');
+                ele.classList.remove('text-light');
+                ele.classList.add('text-dark');
+                ele.classList.remove('navbar-dark');
+                ele.classList.add('navbar-light');
+            }
         }
     }
 
