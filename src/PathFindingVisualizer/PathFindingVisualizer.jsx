@@ -268,6 +268,7 @@ export default class PathFindingVisualizer extends Component {
         if (newMethod === "BreathFirst" || newMethod === "DepthFirst" || newMethod === "Recursive" || newMethod === "Bidirectional") {
             var h = document.getElementById('addWeights');
             h.disabled = true;
+            this.removeWeights();
         } else {
             var h = document.getElementById('addWeights');
             h.disabled = false;
@@ -277,10 +278,22 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ guideText: st });
         }
         if (newMethod === 'Recursive') {
-            var st = newMethod + " is a non-weighted search algorithm and does not guarantee shortest path";
+            var st = newMethod + " is a non-weighted search algorithm and does not guarantee shortest path.";
             this.setState({ guideText: st });
         }
         this.setState({ searchMethod: newMethod });
+    }
+
+    removeWeights() {
+        const grid = this.state.grid;
+        for (const row of grid) {
+            for (const node of row) {
+                if (node.weight != 1)
+                    node.weight = 1;
+            }
+        }
+        this.setState({ grid: grid });
+
     }
 
     changeWeights(value) {
