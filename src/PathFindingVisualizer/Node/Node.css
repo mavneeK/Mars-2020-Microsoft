@@ -8,13 +8,13 @@
 
 .node-finish {
   background-image: url('../../assets/flag.png');
-  background-color: black;
+  /* //background-color: black; */
 
 }
 
 .node-start {
   background-image: url('../../assets/tank.jpg');
-  background-color: white;
+  /* background-color: white; */
   background-size: 33px;
 
 }

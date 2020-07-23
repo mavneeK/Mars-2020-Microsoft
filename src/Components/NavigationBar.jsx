@@ -21,7 +21,7 @@ export default class NavigationBar extends React.Component {
         return (
             <div>
                 <nav id="mode" style={{ backgroundColor: '#123123' }} className="navbar navbar-expand-lg navbar-light bg-light">
-                    <a className="navbar-brand" href="/"><img src={mars_image} height="24px" width="24px" style={{ marginRight: "10px" }}></img>Mars 2020</a>
+                    <a className="navbar-brand" href="/"><img src={mars_image} height="24px" width="24px" style={{ marginRight: "5px" }}></img>Mars 2020</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -35,29 +35,29 @@ export default class NavigationBar extends React.Component {
                             <option value="Recursive">Recursive</option>
                             <option value="DepthFirst">Depth First</option>
                         </select>
-                        <select className="navbar navbar-light text-dark bg-light btn btn-light border border-light rounded" id="heuristic" style={{ marginLeft: "10px" }} onChange={(event) => this.props.changeHeuristic(event.target.value)}>
+                        <select className="navbar navbar-light text-dark bg-light btn btn-light border border-light rounded" id="heuristic" style={{ marginLeft: "5px" }} onChange={(event) => this.props.changeHeuristic(event.target.value)}>
                             <option value="Manhattan">Manhattan</option>
                             <option value="Euclidean">Euclidean</option>
                             <option value="DiagonalDistance"> Diagonal Distance</option>
                             <option value="Octile">Octile</option>
                         </select>
-                        <span className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "10px" }}>Diagonal Search: <input style={{ marginLeft: "4px" }} type="checkbox" onClick={() => this.props.changeDiagonal()}></input></span>
-                        <button className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.resetGrid()}>
+                        <span className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "5px" }}>Diagonal Search: <input style={{ marginLeft: "4px" }} type="checkbox" onClick={() => this.props.changeDiagonal()}></input></span>
+                        <button className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "5px" }} onClick={() => this.props.resetGrid()}>
                             Reset Grid
                     </button>
-                        <span className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "10px" }}>Add Weights Instead Of Walls<input style={{ marginLeft: "4px" }} type="checkbox" id="addWeights" onClick={() => this.props.changeWeights()}></input></span>
-                        <button className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.runAlgorithm()}>
+                        <span className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "5px" }}>Add Weights Instead Of Walls<input style={{ marginLeft: "4px" }} type="checkbox" id="addWeights" onClick={() => this.props.changeWeights()}></input></span>
+                        <button className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "5px" }} onClick={() => this.props.runAlgorithm()}>
                             Run Algorithm
                     </button>
-                        <span style={{ marginRight: "10px", marginLeft: "10px" }} className="navbar btn btn-light border border-light text-dark rounded">Weight:</span>
+                        <span style={{ marginRight: "5px", marginLeft: "5px" }} className="navbar btn btn-light border border-light text-dark rounded">Weight:</span>
                         <input style={{ width: "5%" }} className="navbar btn btn-light border border-light text-dark rounded" placeholder="10" id="weight" type="number" onChange={(event) => this.props.changeWeight(event.target.value)}>
                         </input>
-                        <button id="secondDest" className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.addDestination()}>
+                        <button id="secondDest" className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "5px" }} onClick={() => this.props.addDestination()}>
                             Add another destination
                     </button>
                         <img src={alien} height="40px" width="40px"></img>
                     </div>
-                    <span style={{ marginLeft: "0px" }} className="navbar btn btn-light rounded">Mars Theme:</span>
+                    <span style={{ marginLeft: "5px" }} className="navbar btn btn-light rounded">Mars Theme:</span>
                     <label className="switch">
                         <input type="checkbox" onChange={() => this.props.theme()} />
                         <span className="slider round"></span>
