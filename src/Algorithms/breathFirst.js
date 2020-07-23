@@ -12,6 +12,7 @@ export function BreathFirst(grid, startNode, finishNode, diagonal) {
         currentNode.isVisited = true;
         prevNode = currentNode;
         visitedNodesInOrder.push(currentNode);
+        if (currentNode.isFinish == true) return visitedNodesInOrder;
         if (currentNode === finishNode) return visitedNodesInOrder;
         updateQueue(queue, currentNode, grid, diagonal);
     }

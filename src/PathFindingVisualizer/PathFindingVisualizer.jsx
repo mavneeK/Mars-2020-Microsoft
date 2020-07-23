@@ -222,7 +222,7 @@ export default class PathFindingVisualizer extends Component {
             var end = performance.now();
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
-            const nodesInShortestPathOrder = ShortestPathBreathFirst(finishNode);
+            const nodesInShortestPathOrder = ShortestPathBreathFirst(visitedNodesInOrder[visitedNodesInOrder.length - 1]);
             this.setState({ shortestPathLength: nodesInShortestPathOrder.length === 1 ? 0 : nodesInShortestPathOrder.length });
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'DepthFirst') {
@@ -231,8 +231,9 @@ export default class PathFindingVisualizer extends Component {
             var end = performance.now();
             this.setState({ time: (end - start).toFixed(2) });
             this.setState({ operations: visitedNodesInOrder.length })
-            const nodesInShortestPathOrder = ShortestPathDepthFirst(finishNode);
+            const nodesInShortestPathOrder = ShortestPathDepthFirst(visitedNodesInOrder[visitedNodesInOrder.length - 1]);
             this.setState({ shortestPathLength: nodesInShortestPathOrder.length === 1 ? 0 : nodesInShortestPathOrder.length });
+            this.setState({ shortestPathLength: "Not available" })
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'AStar') {
             var start = performance.now()
@@ -261,6 +262,7 @@ export default class PathFindingVisualizer extends Component {
             this.setState({ operations: visitedNodesInOrder.length })
             const nodesInShortestPathOrder = ShortestPathRecursion(finishNode);
             this.setState({ shortestPathLength: nodesInShortestPathOrder.length === 1 ? 0 : nodesInShortestPathOrder.length });
+            this.setState({ shortestPathLength: "Not available" })
             this.animate(visitedNodesInOrder, nodesInShortestPathOrder);
         } else if (this.state.searchMethod === 'Bidirectional') {
             var start = performance.now()
@@ -301,7 +303,11 @@ export default class PathFindingVisualizer extends Component {
             var st = newMethod + " is a non-weighted search algorithm and does not guarantee shortest path.";
             this.setState({ guideText: st });
         }
-        if (newMethod === 'Dijkstra') {
+        if (newMethod === 'DepthFirst') {
+            var st = newMethod + " is a non-weighted search algorithm and does not guarantee shortest path.";
+            this.setState({ guideText: st });
+        }
+        if (newMethod === 'Dijkstra' || newMethod === 'BreathFirst' || newMethod === 'DepthFirst') {
             var h = document.getElementById('secondDest');
             h.disabled = false;
         } else {

@@ -14,12 +14,11 @@ export function DepthFirst(grid, startNode, finishNode, diagonal) {
         if (currentNode.isWall === true) continue;
 
 
-
         if (currentNode.isVisited === false) {
             visitedNodesInOrder.push(currentNode);
             currentNode.isVisited = true;
         }
-
+        if (currentNode.isFinish === true) return visitedNodesInOrder;
         if (currentNode === finishNode) return visitedNodesInOrder;
 
         // iterate the neighbours and push them to the stack if they are not visited
