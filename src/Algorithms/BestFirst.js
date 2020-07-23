@@ -15,6 +15,7 @@ export function BestFirst(grid, startNode, finishNode, diagonal, heuristic) {
         closestNode.isVisited = true;
 
         visitedNodesInOrder.push(closestNode);
+        // if (closestNode.isFinish === true);
         if (closestNode === finishNode) return visitedNodesInOrder;
         updateUnvisitedNeighbors(closestNode, unvisitedNodes, grid, diagonal);
     }

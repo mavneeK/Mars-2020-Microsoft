@@ -16,6 +16,7 @@ export function Dijkstra(grid, startNode, finishNode, diagonal) {
       visitedNodesInOrder.push(closestNode);
       // }
       // if (closestNode === finishNode) p = false;
+      if (closestNode.isFinish === true) return visitedNodesInOrder;
       if (closestNode === finishNode) return visitedNodesInOrder;
       updateUnvisitedNeighbors(closestNode, grid, diagonal);
    }

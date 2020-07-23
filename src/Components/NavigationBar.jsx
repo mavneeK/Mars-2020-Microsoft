@@ -50,11 +50,14 @@ export default class NavigationBar extends React.Component {
                             Run Algorithm
                     </button>
                         <span style={{ marginRight: "10px", marginLeft: "10px" }} className="navbar btn btn-light border border-light text-dark rounded">Weight:</span>
-                        <input style={{ width: "10%" }} className="navbar btn btn-light border border-light text-dark rounded" placeholder="10" id="weight" type="number" onChange={(event) => this.props.changeWeight(event.target.value)}>
+                        <input style={{ width: "5%" }} className="navbar btn btn-light border border-light text-dark rounded" placeholder="10" id="weight" type="number" onChange={(event) => this.props.changeWeight(event.target.value)}>
                         </input>
-                        <img src={alien} height="40px" width="40px" style={{ marginRight: "10px" }}></img>
+                        <button id="secondDest" className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "10px" }} onClick={() => this.props.addDestination()}>
+                            Add another destination
+                    </button>
+                        <img src={alien} height="40px" width="40px"></img>
                     </div>
-                    <span className="navbar btn btn-light rounded">Mars Mode:</span>
+                    <span style={{ marginLeft: "0px" }} className="navbar btn btn-light rounded">Mars Theme:</span>
                     <label className="switch">
                         <input type="checkbox" onChange={() => this.props.theme()} />
                         <span className="slider round"></span>
