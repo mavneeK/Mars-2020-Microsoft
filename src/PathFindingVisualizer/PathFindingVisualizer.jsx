@@ -286,6 +286,14 @@ export default class PathFindingVisualizer extends Component {
     changeWeights(value) {
         // console.log(value);
         if (value > 1) {
+            const grid = this.state.grid;
+            for (const row of grid) {
+                for (const node of row) {
+                    if (node.weight != 1)
+                        node.weight = value;
+                }
+            }
+            this.setState({ grid: grid });
             NODE_WEIGHT = value;
             console.log(NODE_WEIGHT);
         }
