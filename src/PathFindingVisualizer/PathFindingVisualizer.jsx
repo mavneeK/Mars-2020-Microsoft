@@ -313,6 +313,7 @@ export default class PathFindingVisualizer extends Component {
         } else {
             var h = document.getElementById('secondDest');
             h.disabled = true;
+            this.removeFinish();
         }
         this.setState({ searchMethod: newMethod });
     }
@@ -323,6 +324,19 @@ export default class PathFindingVisualizer extends Component {
             for (const node of row) {
                 if (node.weight != 1)
                     node.weight = 1;
+            }
+        }
+        this.setState({ grid: grid });
+
+    }
+    removeFinish() {
+        const grid = this.state.grid;
+        for (const row of grid) {
+            for (const node of row) {
+                if (node.isFinish === true && (node.row != FINISH_NODE_ROW || node.col != FINISH_NODE_COL)) {
+                    node.isFinish = false;
+                    document.getElementById(`node-${node.row}-${node.col}`).classList.remove('node-finish');
+                }
             }
         }
         this.setState({ grid: grid });
