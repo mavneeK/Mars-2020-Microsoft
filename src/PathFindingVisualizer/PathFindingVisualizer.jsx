@@ -10,6 +10,7 @@ import { BestFirst, ShortestPathBestFirst } from '../Algorithms/BestFirst'
 import { Recursive, ShortestPathRecursion } from '../Algorithms/Recursive';
 import { Bidirectional, printPath } from '../Algorithms/Bidirectional';
 import DetailGrid from '../Components/DetailGrid';
+import MyModal from '../Components/Modal';
 
 let START_NODE_ROW = 10;
 let START_NODE_COL = 15;
@@ -558,6 +559,7 @@ export default class PathFindingVisualizer extends Component {
                     time={this.state.time}
                     shortestPathLength={this.state.shortestPathLength}></DetailGrid>
                 <div className="grid">
+                    <MyModal></MyModal>
                     {/* <img src={marsPlanet} height="100px" style={{ position: "absolute" }}></img> */}
                     {grid.map((row, rowIdx) => {
                         return (
