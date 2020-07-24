@@ -50,7 +50,7 @@ export default class NavigationBar extends React.Component {
                             Run Algorithm
                     </button>
                         <span style={{ marginRight: "5px", marginLeft: "5px" }} className="navbar btn btn-light border border-light text-dark rounded">Weight:</span>
-                        <input style={{ width: "5%" }} className="navbar btn btn-light border border-light text-dark rounded" placeholder="10" id="weight" type="number" onChange={(event) => this.props.changeWeight(event.target.value)}>
+                        <input style={{ width: "5%" }} className="navbar btn btn-light border border-light text-dark rounded" placeholder="5" id="weight" type="number" onChange={(event) => this.props.changeWeight(event.target.value)}>
                         </input>
                         <button id="secondDest" className="navbar btn btn-light border border-light rounded" style={{ marginLeft: "5px" }} onClick={() => this.props.addDestination()}>
                             Add another destination

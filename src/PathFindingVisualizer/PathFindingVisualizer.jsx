@@ -17,7 +17,7 @@ let FINISH_NODE_ROW = 10;
 let FINISH_NODE_COL = 35;
 let WINDOW_HEIGHT = 200;
 let WINDOW_WIDTH = 200;
-let NODE_WEIGHT = 10;
+let NODE_WEIGHT = 5;
 
 
 export default class PathFindingVisualizer extends Component {
@@ -178,6 +178,9 @@ export default class PathFindingVisualizer extends Component {
             if (visitedNodesInOrder[i].isFinish === true) {
                 continue;
             }
+            if (visitedNodesInOrder[i].weight > 1) {
+                continue;
+            }
             setTimeout(() => {
                 const node = visitedNodesInOrder[i];
                 document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-visited';
@@ -191,6 +194,9 @@ export default class PathFindingVisualizer extends Component {
                 continue;
             }
             if (nodesInShortestPathOrder[i].isFinish === true) {
+                continue;
+            }
+            if (nodesInShortestPathOrder[i].weight > 1) {
                 continue;
             }
             setTimeout(() => {
