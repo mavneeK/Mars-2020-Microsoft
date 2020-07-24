@@ -33,7 +33,7 @@ export default class MyModal extends React.Component {
 
     render() {
         return (
-            <Modal style={customStyles} isOpen={this.state.isOpen}>
+            <Modal style={customStyles} onRequestClose={() => this.setModelState(false)} isOpen={this.state.isOpen}>
                 <div>
                     <img src={hint} height="10%" width="100%"></img>
                     <div>
